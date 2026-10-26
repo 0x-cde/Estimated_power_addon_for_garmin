@@ -82,9 +82,7 @@ _EPOCH = datetime(2000, 1, 1, tzinfo=timezone.utc)   # anonymized rides have no 
 
 
 def default_db():
-    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-    import anonymize
-    return anonymize.DEFAULT_DB
+    return os.environ.get("EP_DB") or None
 
 
 def load_db_ride(con, ride_id):
@@ -296,7 +294,7 @@ def write_csv(path, rows, est):
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("files", nargs="*", help="FIT files (FIT mode); omit to use the database")
-    ap.add_argument("--db", default=None, help="contributor database (default: the private folder)")
+    ap.add_argument("--db", default=None, help="contributor database (database mode; or set EP_DB)")
     ap.add_argument("--ride", type=int, action="append", default=[], help="database ride id (repeatable)")
     ap.add_argument("--all", action="store_true", help="every database ride with power")
     ap.add_argument("--rider-kg", type=float, help="FIT mode: the rider's weight")
@@ -344,7 +342,10 @@ def main():
 
     if not args.ride and not args.all:
         ap.error("give --ride N, --all, or FIT files")
-    con = sqlite3.connect(f"file:{args.db or default_db()}?mode=ro", uri=True)
+    db = args.db or default_db()
+    if not db:
+        ap.error("give the contributor database with --db or EP_DB")
+    con = sqlite3.connect(f"file:{db}?mode=ro", uri=True)
     ids = args.ride or [r[0] for r in con.execute(
         "SELECT DISTINCT ride_id FROM samples WHERE power IS NOT NULL ORDER BY ride_id")]
     results = []

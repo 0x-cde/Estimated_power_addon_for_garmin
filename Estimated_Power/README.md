@@ -224,18 +224,21 @@ resources/
 
 This folder holds the add-on itself. The tooling used to build and
 test it (Docker setup for the SDK Manager and simulator, a Python reference model
-with unit tests) is in the `development/` folder next to this one. The signing
-key and build output are kept outside the repository.
+with unit tests) is in the `development/` folder next to this one.
 
-With that in place:
+With that in place, and `EP_SIGNING_KEY` and `EP_BUILD_DIR` set (see
+[development/README.md](../development/README.md)):
 
 ```sh
-../development/devenv/ciq.sh compile edge840   # build to the private build folder
+../development/devenv/ciq.sh compile edge840   # build the add-on
 ../development/devenv/ciq.sh simulator &       # start the simulator
 ../development/devenv/ciq.sh run edge840       # load the add-on into it
 ```
 
 ## Open items
+
+The model's open questions and how they will be answered are listed in
+[Known gaps](../README.md#known-gaps-and-how-they-will-be-closed). Add-on items:
 
 - **Supported models:** Edge 540, 550, 840, 850, 1040 and 1050 only. Older Edges
   (530, 830, 1030 family, Explore 2, MTB) and the Edge 1060 are deliberately left out.

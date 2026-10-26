@@ -328,7 +328,7 @@ def cmd_selftest(a):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--db", default=an.DEFAULT_DB)
+    ap.add_argument("--db", default=an.DEFAULT_DB, required=an.DEFAULT_DB is None, help=an.DB_HELP)
     sub = ap.add_subparsers(dest="cmd", required=True)
     p = sub.add_parser("fit")
     p.add_argument("--wind", choices=["free", "weather", "none"], default="free")

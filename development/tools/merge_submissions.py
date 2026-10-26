@@ -15,16 +15,15 @@ rides, samples and weather into the main database:
   - each archive is merged in one transaction: all of it or nothing.
 
 Archives are treated as untrusted input: only a zip with exactly one member
-named rides.sqlite and a sane size is accepted, it is unpacked into a private
-temporary directory, and the database is opened read-only.
+named rides.sqlite and a sane size is accepted, it is unpacked into a
+temporary directory readable only by you, and the database is opened read-only.
 
 Usage:
   .venv/bin/python -I tools/merge_submissions.py --identity ~/age/ep-upload.key incoming/*.zip.age
   .venv/bin/python -I tools/merge_submissions.py incoming/*.zip            # already decrypted
   .venv/bin/python -I tools/merge_submissions.py --dry-run --identity KEY incoming/*.zip.age
 
-The main database defaults to the private folder (see anonymize.py); --db
-overrides it. Decrypting .age files needs the `age` command.
+The main database is given with --db or the EP_DB environment variable. Decrypting .age files needs the `age` command.
 """
 import argparse
 import hashlib
@@ -202,7 +201,7 @@ def merge_archive(main, path, identity, age_binary, dry_run=False):
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("archives", nargs="+", help=".zip.age (encrypted) or .zip (decrypted) website archives")
-    ap.add_argument("--db", default=an.DEFAULT_DB, help="main contributor database")
+    ap.add_argument("--db", default=an.DEFAULT_DB, required=an.DEFAULT_DB is None, help=an.DB_HELP)
     ap.add_argument("--identity", help="age private key file (for .zip.age archives)")
     ap.add_argument("--age", default=shutil.which("age") or "age", help="age command")
     ap.add_argument("--dry-run", action="store_true", help="check and count, change nothing")

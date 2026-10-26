@@ -51,24 +51,16 @@ research/                  Literature notes, full-text findings, bibliography sc
 data/questionnaire.md      The questions contributors answer on the website, with the allowed answers
 ```
 
-## Private folder
+Keys, build output, ride files and the contributor database are never stored
+in the repository, and `.gitignore` blocks these file types. The tools have no
+default locations for them; set these environment variables to folders and
+files outside the repository:
 
-Everything that must not be published lives **outside the repository**, in a
-folder next to it: `../../EstimatedPower_private/` by default, or set
-`EP_PRIVATE_DIR`. It holds:
-
-```
-keys/       Connect IQ developer signing key (store updates must be signed with the same key)
-build/      compiler output
-data/       rides.sqlite, the anonymized contributor database (personal data under the GDPR
-            while a contributor code can be linked to a person)
-testData/   ride files used for testing
-research/papers/   papers obtained for reading only
-```
-
-`ciq.sh` and `anonymize.py` use these locations by default, so nothing private
-is ever written inside the repository. The repository `.gitignore` also blocks
-these file types as a second line of defence.
+| Variable | Used by | Meaning |
+|---|---|---|
+| `EP_SIGNING_KEY` | `devenv/ciq.sh compile` | your Connect IQ developer key (`.der`) |
+| `EP_BUILD_DIR` | `devenv/ciq.sh compile`, `run` | where the compiled add-on is written |
+| `EP_DB` | `tools/anonymize.py`, `merge_submissions.py`, `fit_rides.py`, `replay.py` | the contributor database (or pass `--db PATH`) |
 
 ## Setup
 
@@ -84,7 +76,7 @@ be redistributed, so they are never copied into this repository.
 ```sh
 devenv/ciq.sh image              # once, or after changing the Dockerfile
 devenv/ciq.sh sdkmanager         # sign in, download SDKs and device profiles
-devenv/ciq.sh compile edge840    # -> private build folder
+devenv/ciq.sh compile edge840    # build the add-on
 devenv/ciq.sh simulator &        # start the simulator
 devenv/ciq.sh run edge840        # load the add-on into the simulator
 python3 -m venv .venv && .venv/bin/pip install fitdecode numpy scipy
@@ -184,7 +176,7 @@ rsync -a server:/var/lib/ep-upload/outbox/ ./incoming/
 .venv/bin/python -I tools/merge_submissions.py --identity PATH/TO/age-private.key incoming/*.zip.age
 ```
 
-Each archive is decrypted into a private temporary folder, checked, and merged
+Each archive is decrypted into a temporary folder that only you can read, checked, and merged
 in one transaction:
 - the archive must contain only a valid `rides.sqlite`;
 - rides already in the database (same `content_hash`) are skipped;
