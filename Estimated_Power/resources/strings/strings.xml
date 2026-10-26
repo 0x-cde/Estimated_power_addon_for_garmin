@@ -1,0 +1,87 @@
+<strings>
+    <string id="AppName">Estimated Power</string>
+
+    <string id="ChartTitle">Estimated Power</string>
+    <string id="PowerLabel">Est. Power</string>
+    <string id="LapAvgLabel">Avg Est. Power</string>
+    <string id="SessionAvgLabel">Avg Est. Power</string>
+    <string id="Watts">W</string>
+
+    <string id="RiderWeightTitle">Rider weight kg (0 = use Garmin profile)</string>
+    <string id="RiderHeightTitle">Rider height cm (0 = use Garmin profile)</string>
+    <string id="PresetsTitle">Bike presets (one per ride type)</string>
+    <string id="RideTypeTitle">Edge ride type</string>
+    <string id="RideRoad">Road</string>
+    <string id="RideGravel">Gravel</string>
+    <string id="RideCommuting">Commuting</string>
+    <string id="RideIndoor">Indoor cycling</string>
+    <string id="TyreTypeTitle">Tyre type</string>
+    <string id="TyreRoad">Road tyres</string>
+    <string id="TyreGravel">Gravel tyres</string>
+    <string id="TyreWidthTitle">Tyre width</string>
+    <string id="TyreWidth18">18 mm</string>
+    <string id="TyreWidth19">19 mm</string>
+    <string id="TyreWidth20">20 mm</string>
+    <string id="TyreWidth21">21 mm</string>
+    <string id="TyreWidth22">22 mm</string>
+    <string id="TyreWidth23">23 mm</string>
+    <string id="TyreWidth24">24 mm</string>
+    <string id="TyreWidth25">25 mm</string>
+    <string id="TyreWidth26">26 mm</string>
+    <string id="TyreWidth27">27 mm</string>
+    <string id="TyreWidth28">28 mm</string>
+    <string id="TyreWidth29">29 mm</string>
+    <string id="TyreWidth30">30 mm</string>
+    <string id="TyreWidth31">31 mm</string>
+    <string id="TyreWidth32">32 mm</string>
+    <string id="TyreWidth33">33 mm</string>
+    <string id="TyreWidth34">34 mm</string>
+    <string id="TyreWidth35">35 mm</string>
+    <string id="TyreWidth36">36 mm</string>
+    <string id="TyreWidth37">37 mm</string>
+    <string id="TyreWidth38">38 mm</string>
+    <string id="TyreWidth39">39 mm</string>
+    <string id="TyreWidth40">40 mm</string>
+    <string id="TyreWidth41">41 mm</string>
+    <string id="TyreWidth42">42 mm</string>
+    <string id="TyreWidth43">43 mm</string>
+    <string id="TyreWidth44">44 mm</string>
+    <string id="TyreWidth45">45 mm</string>
+    <string id="TyreWidth46">46 mm</string>
+    <string id="TyreWidth47">47 mm</string>
+    <string id="TyreWidth48">48 mm</string>
+    <string id="TyreWidth49">49 mm</string>
+    <string id="TyreWidth50">50 mm</string>
+    <string id="TyreWidth51">51 mm</string>
+    <string id="TyreWidth52">52 mm</string>
+    <string id="TyreWidth53">53 mm</string>
+    <string id="TyreWidth54">54 mm</string>
+    <string id="TyreWidth55">55 mm</string>
+    <string id="TyreWidth56">56 mm</string>
+    <string id="TyreWidth57">57 mm</string>
+    <string id="TyreWidth58">58 mm</string>
+    <string id="TyreWidth59">59 mm</string>
+    <string id="TyreWidth60">60 mm</string>
+    <string id="TyreClassTitle">Tyre class</string>
+    <string id="TyreFast">Fast (race / performance)</string>
+    <string id="TyreAllRound">All-round</string>
+    <string id="TyreDurable">Durable (puncture protection / comfort)</string>
+    <string id="TyreTreadTitle">Tread (gravel tyres only)</string>
+    <string id="TreadSlick">Slick</string>
+    <string id="TreadFile">File tread / low knobs</string>
+    <string id="TreadKnobby">Knobby</string>
+    <string id="PositionTitle">Riding position</string>
+    <string id="PositionRoad">Road (70% hoods, 30% drops)</string>
+    <string id="PositionTT">Time trial (95% aero bars)</string>
+    <string id="PositionUpright">Upright (flat bar, city)</string>
+    <string id="ApparelTitle">Clothing</string>
+    <string id="ApparelKit">Cycling kit (tight fit)</string>
+    <string id="ApparelCasual">Casual clothes / bags</string>
+    <string id="BikeWeightTitle">Bike weight kg</string>
+    <string id="ExtraWeightTitle">Extra weight (bottles, bags, clothing)</string>
+    <string id="Extra10">1 kg</string>
+    <string id="Extra15">1.5 kg</string>
+    <string id="Extra20">2 kg</string>
+
+    <string id="NativePowerTitle">Tag as power in FIT file (Strava etc.)</string>
+</strings>

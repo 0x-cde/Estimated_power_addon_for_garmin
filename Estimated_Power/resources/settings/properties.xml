@@ -1,0 +1,7 @@
+<properties>
+    <property id="riderWeightKg" type="float">0.0</property>
+    <property id="riderHeightCm" type="number">0</property>
+    <property id="writeNativePower" type="boolean">true</property>
+    <!-- Bike presets; defaults are defined in settings.xml -->
+    <property id="presets" type="array"></property>
+</properties>

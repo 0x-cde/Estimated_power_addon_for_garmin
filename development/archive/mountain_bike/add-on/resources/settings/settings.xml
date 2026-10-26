@@ -1,0 +1,119 @@
+<settings>
+    <setting propertyKey="@Properties.presets" title="@Strings.PresetsTitle" maxLength="8">
+        <setting title="@Strings.RideTypeTitle" type="number">
+            <settingConfig id="rideType" type="list">
+                <listEntry value="0">@Strings.RideRoad</listEntry>
+                <listEntry value="1">@Strings.RideGravel</listEntry>
+                <listEntry value="2">@Strings.RideMountain</listEntry>
+                <listEntry value="3">@Strings.RideCommuting</listEntry>
+                <listEntry value="4">@Strings.RideIndoor</listEntry>
+            </settingConfig>
+        </setting>
+        <setting title="@Strings.TyreTypeTitle" type="number">
+            <settingConfig id="tyreType" type="list">
+                <listEntry value="0">@Strings.TyreRoad</listEntry>
+                <listEntry value="1">@Strings.TyreGravel</listEntry>
+                <listEntry value="2">@Strings.TyreMtb</listEntry>
+            </settingConfig>
+        </setting>
+        <setting title="@Strings.TyreWidthTitle" type="number">
+            <settingConfig id="tyreWidth" type="list">
+                <listEntry value="18">@Strings.TyreWidth18</listEntry>
+                <listEntry value="19">@Strings.TyreWidth19</listEntry>
+                <listEntry value="20">@Strings.TyreWidth20</listEntry>
+                <listEntry value="21">@Strings.TyreWidth21</listEntry>
+                <listEntry value="22">@Strings.TyreWidth22</listEntry>
+                <listEntry value="23">@Strings.TyreWidth23</listEntry>
+                <listEntry value="24">@Strings.TyreWidth24</listEntry>
+                <listEntry value="25">@Strings.TyreWidth25</listEntry>
+                <listEntry value="26">@Strings.TyreWidth26</listEntry>
+                <listEntry value="27">@Strings.TyreWidth27</listEntry>
+                <listEntry value="28">@Strings.TyreWidth28</listEntry>
+                <listEntry value="29">@Strings.TyreWidth29</listEntry>
+                <listEntry value="30">@Strings.TyreWidth30</listEntry>
+                <listEntry value="31">@Strings.TyreWidth31</listEntry>
+                <listEntry value="32">@Strings.TyreWidth32</listEntry>
+                <listEntry value="33">@Strings.TyreWidth33</listEntry>
+                <listEntry value="34">@Strings.TyreWidth34</listEntry>
+                <listEntry value="35">@Strings.TyreWidth35</listEntry>
+                <listEntry value="36">@Strings.TyreWidth36</listEntry>
+                <listEntry value="37">@Strings.TyreWidth37</listEntry>
+                <listEntry value="38">@Strings.TyreWidth38</listEntry>
+                <listEntry value="39">@Strings.TyreWidth39</listEntry>
+                <listEntry value="40">@Strings.TyreWidth40</listEntry>
+                <listEntry value="41">@Strings.TyreWidth41</listEntry>
+                <listEntry value="42">@Strings.TyreWidth42</listEntry>
+                <listEntry value="43">@Strings.TyreWidth43</listEntry>
+                <listEntry value="44">@Strings.TyreWidth44</listEntry>
+                <listEntry value="45">@Strings.TyreWidth45</listEntry>
+                <listEntry value="46">@Strings.TyreWidth46</listEntry>
+                <listEntry value="47">@Strings.TyreWidth47</listEntry>
+                <listEntry value="48">@Strings.TyreWidth48</listEntry>
+                <listEntry value="49">@Strings.TyreWidth49</listEntry>
+                <listEntry value="50">@Strings.TyreWidth50</listEntry>
+                <listEntry value="51">@Strings.TyreWidth51</listEntry>
+                <listEntry value="52">@Strings.TyreWidth52</listEntry>
+                <listEntry value="53">@Strings.TyreWidth53</listEntry>
+                <listEntry value="54">@Strings.TyreWidth54</listEntry>
+                <listEntry value="55">@Strings.TyreWidth55</listEntry>
+                <listEntry value="56">@Strings.TyreWidth56</listEntry>
+                <listEntry value="57">@Strings.TyreWidth57</listEntry>
+                <listEntry value="58">@Strings.TyreWidth58</listEntry>
+                <listEntry value="59">@Strings.TyreWidth59</listEntry>
+                <listEntry value="60">@Strings.TyreWidth60</listEntry>
+            </settingConfig>
+        </setting>
+        <!-- Road and MTB tyres use the class; gravel tyres use the tread instead -->
+        <setting title="@Strings.TyreClassTitle" type="number">
+            <settingConfig id="tyreClass" type="list">
+                <listEntry value="0">@Strings.TyreFast</listEntry>
+                <listEntry value="1">@Strings.TyreAllRound</listEntry>
+                <listEntry value="2">@Strings.TyreDurable</listEntry>
+            </settingConfig>
+        </setting>
+        <setting title="@Strings.TyreTreadTitle" type="number">
+            <settingConfig id="tyreTread" type="list">
+                <listEntry value="0">@Strings.TreadSlick</listEntry>
+                <listEntry value="1">@Strings.TreadFile</listEntry>
+                <listEntry value="2">@Strings.TreadKnobby</listEntry>
+            </settingConfig>
+        </setting>
+        <setting title="@Strings.PositionTitle" type="number">
+            <settingConfig id="position" type="list">
+                <listEntry value="0">@Strings.PositionRoad</listEntry>
+                <listEntry value="1">@Strings.PositionTT</listEntry>
+                <listEntry value="2">@Strings.PositionUpright</listEntry>
+            </settingConfig>
+        </setting>
+        <setting title="@Strings.ApparelTitle" type="number">
+            <settingConfig id="apparel" type="list">
+                <listEntry value="0">@Strings.ApparelKit</listEntry>
+                <listEntry value="1">@Strings.ApparelCasual</listEntry>
+            </settingConfig>
+        </setting>
+        <!-- No default: the rider must enter the bike weight -->
+        <setting title="@Strings.BikeWeightTitle" type="float">
+            <settingConfig id="bikeKg" type="numeric" min="3" max="40" required="true"/>
+        </setting>
+        <!-- Stored in 0.1 kg: list settings are only valid for number properties -->
+        <setting title="@Strings.ExtraWeightTitle" type="number">
+            <settingConfig id="extraWeight" type="list">
+                <listEntry value="10">@Strings.Extra10</listEntry>
+                <listEntry value="15">@Strings.Extra15</listEntry>
+                <listEntry value="20">@Strings.Extra20</listEntry>
+            </settingConfig>
+        </setting>
+        <!-- No default presets: riders create one per bike and must enter its weight -->
+    </setting>
+
+    <setting propertyKey="@Properties.riderWeightKg" title="@Strings.RiderWeightTitle">
+        <settingConfig type="numeric" min="0" max="250"/>
+    </setting>
+    <setting propertyKey="@Properties.riderHeightCm" title="@Strings.RiderHeightTitle">
+        <settingConfig type="numeric" min="0" max="230"/>
+    </setting>
+
+    <setting propertyKey="@Properties.writeNativePower" title="@Strings.NativePowerTitle">
+        <settingConfig type="boolean"/>
+    </setting>
+</settings>

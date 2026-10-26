@@ -1,0 +1,24 @@
+<fitContributions>
+    <fitField id="0"
+        displayInChart="true"
+        sortOrder="0"
+        precision="0"
+        chartTitle="@Strings.ChartTitle"
+        dataLabel="@Strings.PowerLabel"
+        unitLabel="@Strings.Watts"
+        fillColor="#E0632B" />
+
+    <fitField id="1"
+        displayInActivityLaps="true"
+        sortOrder="1"
+        precision="0"
+        dataLabel="@Strings.LapAvgLabel"
+        unitLabel="@Strings.Watts" />
+
+    <fitField id="2"
+        displayInActivitySummary="true"
+        sortOrder="2"
+        precision="0"
+        dataLabel="@Strings.SessionAvgLabel"
+        unitLabel="@Strings.Watts" />
+</fitContributions>

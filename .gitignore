@@ -1,0 +1,44 @@
+# Keys and credentials
+*.der
+*.pem
+*.p12
+*.pfx
+*.key
+.env
+*.env
+
+# Activity recordings and databases (personal data)
+*.fit
+*.FIT
+*.gpx
+*.tcx
+*.sqlite
+*.sqlite3
+*.db
+*.zip.age
+
+# Third-party documents
+*.pdf
+
+# Connect IQ build output
+bin/
+gen/
+mir/
+*.prg
+*.iq
+*.debug.xml
+
+# Python environments and caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Editors and operating systems
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+Thumbs.db
