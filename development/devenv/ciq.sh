@@ -6,7 +6,7 @@
 #   ciq.sh image              build the container image (once)
 #   ciq.sh sdkmanager         open the SDK Manager (sign in, download SDK + devices)
 #   ciq.sh simulator          start the Connect IQ simulator
-#   ciq.sh compile [device]   compile the add-on (default edge840) to the private build folder
+#   ciq.sh compile [device]   compile the add-on (default edge840) into $EP_BUILD_DIR
 #   ciq.sh run [device]       load the compiled add-on into the running simulator
 #   ciq.sh shell              interactive shell in the container
 #   ciq.sh headless           start the simulator on a virtual screen (no window on the desktop)
@@ -20,12 +20,16 @@ HERE=$(cd "$(dirname "$0")" && pwd)
 DEV=$(dirname "$HERE")
 WORKSPACE=$(dirname "$DEV")
 ADDON="$WORKSPACE/Estimated_Power"
-# Signing key and build output live outside the repository, in the private
-# folder next to it (override with EP_PRIVATE_DIR).
-PRIVATE="${EP_PRIVATE_DIR:-$(dirname "$WORKSPACE")/EstimatedPower_private}"
-BUILD="$PRIVATE/build"
-KEY="$PRIVATE/keys/developer_key.der"
+# The signing key and build output are never kept in the repository. Set
+# EP_SIGNING_KEY (your Connect IQ developer key, .der) and EP_BUILD_DIR before
+# compiling or running.
+BUILD="${EP_BUILD_DIR:-}"
+KEY="${EP_SIGNING_KEY:-}"
 SDK_MANAGER_DIR=${SDK_MANAGER_DIR:-$HOME/.local/opt/connectiq-sdk-manager}
+
+need_build_dir() {
+    [ -n "$BUILD" ] || { echo "set EP_BUILD_DIR to a folder outside the repository" >&2; exit 1; }
+}
 
 run() {
     mkdir -p "$HOME/.Garmin"
@@ -107,12 +111,15 @@ case "${1:-}" in
         run "$(current_sdk_bin)/simulator"
         ;;
     compile)
+        need_build_dir
+        [ -n "$KEY" ] || { echo "set EP_SIGNING_KEY to your Connect IQ developer key (.der)" >&2; exit 1; }
         use_local_jdk
         mkdir -p "$BUILD"
         "$(current_sdk_bin)/monkeyc" -f "$ADDON/monkey.jungle" -d "${2:-edge840}" \
             -o "$BUILD/EstimatedPower.prg" -y "$KEY" -w
         ;;
     run)
+        need_build_dir
         use_local_jdk
         "$(current_sdk_bin)/monkeydo" "$BUILD/EstimatedPower.prg" "${2:-edge840}"
         ;;

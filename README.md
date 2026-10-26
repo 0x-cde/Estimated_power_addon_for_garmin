@@ -30,7 +30,7 @@ Source code: <https://github.com/0x-cde/Estimated_power_addon_for_garmin>
 - [Assumptions and their reasoning](#assumptions-and-their-reasoning)
 - [The scientific process](#the-scientific-process)
 - [Testing the assumptions](#testing-the-assumptions)
-- [What is deliberately not modelled](#what-is-deliberately-not-modelled)
+- [Known gaps and how they will be closed](#known-gaps-and-how-they-will-be-closed)
 - [Expected accuracy](#expected-accuracy)
 - [Repository layout](#repository-layout)
 - [Building and testing](#building-and-testing)
@@ -298,23 +298,56 @@ recovers known values on a real ride's geometry.
   rough surfaces are treated with caution.
 - **Uploads:** only club members with an access code can upload.
 
+## Known gaps and how they will be closed
+
+The model is complete in its first form, but several parts rest on weak
+evidence or have not been tested yet. Each gap has a plan to close it or a
+recorded decision to leave it out.
+
+**Values to confirm with power-meter rides** (see
+[Testing the assumptions](#testing-the-assumptions)):
+
+| Gap | Why it is a gap | How it will be closed |
+|---|---|---|
+| Tyre rolling resistance values | Placeholders for typical tyres; no averaged test data yet | Replace with averaged drum-test data, then compare with the rolling resistance fitted per ride, by tyre type, class and tread |
+| Real-road addition (+ 0.0033) | Rests on one field study, on Californian roads | Rolling resistance fitted per ride on paved rides |
+| Unpaved additions | A judgement within the measured range; no study per tyre type | Rides with and without unpaved sections, compared by tyre type |
+| Tyre temperature | One tyre measured in a lab; the source's two fits differ by about 2× | Half strength for now; checked against rides from different seasons |
+| Tyre width and rolling resistance | Studies disagree at realistic pressures | Width adds only drag for now; fitted rolling resistance is compared by width |
+| Drag area per rider | Body size explains only part of drag (54 % in [Peterman et al. 2015](https://doi.org/10.7717/peerj.1144)) | Accepted as per-rider uncertainty; the position and clothing factors are corrected if fitted drag areas differ consistently |
+| Wind exposure (0.54) | No published value for cyclists | Fitted against the weather stored with each ride |
+| Gravel file-tread value | No study compared it with a slick of the same width | Fitted rolling resistance by tread |
+
+**Device behaviour still to confirm:**
+- The add-on has not yet run on a device, and the latest model changes still
+  need to be compiled and run in the simulator.
+- Garmin's wind bearing convention (direction the wind comes from or goes to) is
+  not documented; it will be checked against a known weather report on a ride.
+- Unpaved sections are detected from the Edge's map-based surface splits. These
+  are confirmed in recorded files but not yet seen live in the add-on.
+  Trails missing from Garmin's maps cannot be detected; Connect IQ offers no
+  map access, so this stays an open question until a test ride shows how the
+  Edge reports them.
+- The 3-second averaging window will be reviewed with test results.
+
+**Deliberately not modelled:**
+- **Drafting and braking:** neither can be detected from the Edge's data. The
+  estimate reads high in a group; negative values are shown as 0. Group rides
+  are kept out of the fits.
+- **Crosswind drag:** only the head- or tailwind component is used.
+- **Tyre pressure and inner tube type** (tube, tubeless, latex): not asked and
+  not modelled. The tyre values assume a sensibly inflated tyre.
+- **Mountain biking:** on paved roads the research cannot separate the effect of
+  knob height from tyre construction. Mountain-bike rides are still collected,
+  so the gap can be closed later.
+- **Cyclocross and e-bikes:** cyclocross power changes too quickly to estimate
+  from speed and gradient, and an e-bike motor's share is unknown.
+
 **Known bias.** Riders with power meters are likely more experienced than the
 riders this add-on is for, with better-optimised setups. Values calibrated on
 their rides could make the estimate read slightly low for less optimised setups.
 The bike presets keep the main setup choices explicit, so only the unmeasured
 part of that difference remains.
-
-## What is deliberately not modelled
-
-- **Drafting:** it cannot be detected, so the estimate reads high in a group.
-- **Braking:** it cannot be detected; negative values are shown as 0.
-- **Crosswind drag:** only the head- or tailwind component is used.
-- **Tyre pressure:** the tyre values assume a sensibly inflated tyre, so no
-  pressure setting is needed.
-- **Inner tube type** (tube, tubeless, latex): not asked and not modelled.
-- **Mountain biking, cyclocross and e-bikes:** not supported for now.
-  Cyclocross power changes too quickly to estimate from speed and gradient, and
-  an e-bike motor's share is unknown.
 
 ## Expected accuracy
 
@@ -356,9 +389,7 @@ Deliberately not in the repository:
 - the Connect IQ SDK, which Garmin's developer agreement does not allow to be
   redistributed.
 
-The development tools keep these in a separate private folder outside the
-repository (see [development/README.md](development/README.md)).
-[.gitignore](.gitignore) blocks them as a second line of defence.
+[.gitignore](.gitignore) blocks these file types as a second line of defence.
 
 ## Building and testing
 
@@ -370,7 +401,8 @@ cd Estimated_power_addon_for_garmin
 **The add-on.** Building needs the Garmin Connect IQ SDK, which you download
 with Garmin's SDK Manager, and your own developer key. The helper script
 [development/devenv/ciq.sh](development/devenv/ciq.sh) runs the SDK Manager and
-simulator in a container and compiles on the host:
+simulator in a container and compiles on the host. Set `EP_SIGNING_KEY` to your
+developer key and `EP_BUILD_DIR` to a build folder outside the repository first:
 
 ```sh
 development/devenv/ciq.sh compile edge840

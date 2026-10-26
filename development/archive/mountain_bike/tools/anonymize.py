@@ -56,11 +56,10 @@ import urllib.parse
 import urllib.request
 from datetime import datetime, timedelta, timezone
 
-# Contributor data is personal data: by default it lives outside the repository, in
-# the private folder next to it (override with EP_PRIVATE_DIR or --db).
-REPO_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-PRIVATE_DIR = os.environ.get("EP_PRIVATE_DIR", os.path.join(os.path.dirname(REPO_ROOT), "EstimatedPower_private"))
-DEFAULT_DB = os.path.join(PRIVATE_DIR, "data", "rides.sqlite")
+# Contributor data is personal data and is never stored in the repository. The
+# database path comes from --db or the EP_DB environment variable; there is no default.
+DEFAULT_DB = os.environ.get("EP_DB") or None
+DB_HELP = "contributor database (required unless EP_DB is set)"
 TRIM_M = 2000.0
 HEADING_MIN_STEP_M = 3.0
 WEATHER_STEP_S = 900          # one weather point per 15 minutes of ride time
@@ -615,7 +614,7 @@ def cmd_delete_contributor(con, a):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--db", default=DEFAULT_DB)
+    ap.add_argument("--db", default=DEFAULT_DB, required=DEFAULT_DB is None, help=DB_HELP)
     sub = ap.add_subparsers(dest="cmd", required=True)
 
     def common(p):

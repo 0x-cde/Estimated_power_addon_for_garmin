@@ -208,7 +208,7 @@ Each entry: what was read, the key quantitative findings, and caveats. "FULL" = 
 ## Martin, Gardner, Barras, Martin 2006 (Sportscience 10:68-69; free) — FULL
 - Instructions for a 6-trial field CdA test (constant speed per trial, speeds from ~10 km/h up to the fastest steady speed, 470 m straight flat road worked well, absolute barometric pressure, wind component per trial). Spreadsheet uses TYPICAL μ values because μ is unstable with few points — another confirmation that Crr is poorly identifiable from few steady runs.
 
-# Papers supplied by the user (2026-10-25), stored in development/research/papers/
+# Papers read in full (2026-10-25)
 
 ## Grappe, Candau, Barbier, Hoffman, Belli, Rouillon 1999 (Ergonomics 42(10):1361-1371) — FULL
 - One rider (66.2 kg, 1.72 m), 9.8 kg bike, hallway (tiled floor) coast-downs with 3 timing switches, 30 runs per condition at 2.5–12.8 m/s, rider keeps pedalling without drive to mimic leg turbulence; upright on tops.
